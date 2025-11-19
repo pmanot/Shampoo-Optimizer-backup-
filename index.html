@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shampoo Strategist</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>Shampoo Strategist</h1>
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <span class="label">Day</span>
+                    <span class="value" id="day-display">1/10</span>
+                </div>
+
+                <!-- Hair Health -->
+                <div class="stat-item bar-container">
+                    <span class="label">Hair Health 💖</span>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill health-fill" id="health-bar" style="width: 100%;"></div>
+                    </div>
+                    <span class="value-small" id="health-text">100%</span>
+                </div>
+
+                <!-- Hair Look -->
+                <div class="stat-item bar-container">
+                    <span class="label">Hair Look ✨</span>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill look-fill" id="look-bar" style="width: 70%;"></div>
+                    </div>
+                    <span class="value-small" id="look-text">7/10</span>
+                </div>
+
+                <!-- Overall Quality -->
+                <div class="stat-item bar-container">
+                    <span class="label">Overall Hair Quality 🌟</span>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill quality-fill" id="quality-bar" style="width: 85%;"></div>
+                    </div>
+                    <span class="value-small" id="quality-text">85</span>
+                </div>
+
+                <div class="stat-item">
+                    <span class="label">Score</span>
+                    <span class="value" id="score-display">0</span>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="forecast-strip">
+                <h3>10-Day Forecast</h3>
+                <div class="calendar-row" id="calendar-strip">
+                    <!-- Calendar days will be injected here -->
+                </div>
+            </section>
+
+            <section class="active-gameplay">
+                <div class="current-status-card">
+                    <div class="hair-status">
+                        <h2>Current Hair State</h2>
+                        <div class="status-badge" id="hair-quality-badge">Good (Day 2)</div>
+                        <p id="hair-desc">Lived-in texture. Not too oily yet.</p>
+                    </div>
+
+                    <div class="event-card">
+                        <div class="event-icon" id="current-event-icon">📅</div>
+                        <div class="event-details">
+                            <span class="event-label">TODAY'S EVENT</span>
+                            <h2 id="current-event-name">Client Meeting</h2>
+                            <p id="current-event-desc">High stakes professional. Needs Day 0 or 1.</p>
+                            <div class="multiplier-tag" id="current-event-multiplier">3.0x Multiplier</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-area">
+                    <button class="action-btn wash-btn" id="btn-wash" onclick="game.handleInput('shampoo')">
+                        <span class="btn-icon">🚿</span>
+                        <div class="btn-text">
+                            <span class="btn-title">SHAMPOOING</span>
+                            <span class="btn-sub">-15% Health / Reset to Day 0</span>
+                        </div>
+                    </button>
+                    <button class="action-btn wait-btn" id="btn-wait" onclick="game.handleInput('wait')">
+                        <span class="btn-icon">💨</span>
+                        <div class="btn-text">
+                            <span class="btn-title">WAIT / DRY SHAMPOO</span>
+                            <span class="btn-sub">+5% Health / Day +1</span>
+                        </div>
+                    </button>
+                </div>
+
+                <div id="chaos-message" class="chaos-toast hidden">
+                    <span class="chaos-icon">⛈️</span>
+                    <span id="chaos-text">Sudden Rain! Frizz penalty applied.</span>
+                </div>
+            </section>
+        </main>
+
+        <!-- End Game Modal -->
+        <div id="end-game-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Performance Review</h2>
+                <div class="final-score-display">
+                    <span class="label">Final Score</span>
+                    <span class="value" id="final-score">0</span>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="score-chart" width="600" height="300"></canvas>
+                    <!-- Fallback or custom SVG container if canvas is too complex for vanilla without lib, 
+                         but we can do simple canvas drawing in vanilla JS easily. -->
+                </div>
+
+                <div class="comparison-section">
+                    <h3>Optimal Strategy</h3>
+                    <p>Best Possible Score: <span id="best-possible-score">0</span></p>
+                    <div class="strategy-comparison" id="strategy-comparison">
+                        <!-- Visual comparison of player moves vs best moves -->
+                    </div>
+                </div>
+
+                <button class="restart-btn" onclick="location.reload()">Play Again</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
